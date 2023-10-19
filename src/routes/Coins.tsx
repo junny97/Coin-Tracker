@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
+
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { fetchCoins } from '../api/api';
 const Container = styled.div`
   padding: 0px 20px;
   max-width: 480px;
@@ -63,29 +65,20 @@ interface CoinInterface {
 }
 
 export default function Coins() {
-  const [coins, setCoins] = useState<CoinInterface[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  const getCoins = async () => {
-    const response = await axios('https://api.coinpaprika.com/v1/coins');
-    setCoins(response.data.slice(0, 100));
-  };
-
-  useEffect(() => {
-    getCoins();
-    setLoading(false);
-  }, []);
-
+  const { isLoading, data } = useQuery<CoinInterface[]>({
+    queryKey: ['coinList'],
+    queryFn: fetchCoins,
+  });
   return (
     <Container>
       <Header>
         <Title>코인</Title>
       </Header>
-      {loading ? (
+      {isLoading ? (
         <Loader>'loading...'</Loader>
       ) : (
         <CoinsList>
-          {coins.map((coin) => (
+          {data?.slice(0, 100).map((coin) => (
             <Coin key={coin.id}>
               <Link
                 to={{
