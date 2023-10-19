@@ -10,7 +10,6 @@ import {
   Link,
   useRouteMatch,
 } from 'react-router-dom';
-
 import { useQuery } from '@tanstack/react-query';
 import { fetchCoinInfo, fetchCoinTickers } from '../api/api';
 interface RouteParams {
@@ -70,7 +69,7 @@ const TabContainer = styled.div`
   gap: 10px;
 `;
 
-const Tab = styled.span<{ isActive: boolean }>`
+const Tab = styled.span<{ $isActive: boolean }>`
   text-align: center;
   text-transform: uppercase;
   font-size: 12px;
@@ -79,12 +78,11 @@ const Tab = styled.span<{ isActive: boolean }>`
   padding: 7px 0px;
   border-radius: 10px;
   color: ${(props) =>
-    props.isActive ? props.theme.accentColor : props.theme.textColor};
+    props.$isActive ? props.theme.accentColor : props.theme.textColor};
   a {
     display: block;
   }
 `;
-
 interface RouteState {
   name: string;
 }
@@ -197,10 +195,10 @@ export default function CoinDetail() {
             </OverviewItem>
           </Overview>
           <TabContainer>
-            <Tab isActive={chartMatch !== null}>
+            <Tab $isActive={chartMatch !== null}>
               <Link to={`/${coinId}/chart`}>Chart</Link>
             </Tab>
-            <Tab isActive={priceMatch !== null}>
+            <Tab $isActive={priceMatch !== null}>
               <Link to={`/${coinId}/price`}>Price</Link>
             </Tab>
           </TabContainer>
@@ -209,7 +207,7 @@ export default function CoinDetail() {
               <Price />
             </Route>
             <Route path={`/:coinId/chart`}>
-              <Chart />
+              <Chart coinId={coinId} />
             </Route>
           </Switch>
         </>
