@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const PriceContainer = styled.div`
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: ${(props) => props.theme.bgAccentColor};
   padding: 10px 20px;
   border-radius: 10px;
 `;
