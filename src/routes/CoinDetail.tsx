@@ -1,5 +1,7 @@
 import { Helmet } from 'react-helmet';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import goBack from '../assets/goBack.svg';
 import Chart from './Chart';
 import Price from './Price';
 import {
@@ -12,6 +14,7 @@ import {
 } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { fetchCoinInfo, fetchCoinTickers } from '../api/api';
+import DarkModeBtn from '../components/DarkModeBtn';
 interface RouteParams {
   coinId: string;
 }
@@ -25,8 +28,18 @@ const Container = styled.div`
 const Header = styled.header`
   height: 10vh;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+`;
+
+const GoBackBtn = styled.button`
+  border: none;
+  appearance: none;
+  background: none;
+  cursor: pointer;
+  background: url(${goBack}) no-repeat left;
+  width: 50px;
+  height: 50px;
 `;
 
 const Title = styled.h1`
@@ -43,7 +56,7 @@ const Loader = styled.span`
 const Overview = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: ${(props) => props.theme.bgAccentColor};
   padding: 10px 20px;
   border-radius: 10px;
 `;
@@ -74,7 +87,7 @@ const Tab = styled.span<{ $isActive: boolean }>`
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 400;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: ${(props) => props.theme.bgAccentColor};
   padding: 7px 0px;
   border-radius: 10px;
   color: ${(props) =>
@@ -157,8 +170,15 @@ export default function CoinDetail() {
   });
   const priceMatch = useRouteMatch('/:coinId/price');
   const chartMatch = useRouteMatch('/:coinId/chart');
-
   const loading = infoLoading || tickersLoading;
+
+  //price에 props로 넘겨줄 정보들
+  const price = tickersData?.quotes.USD.price.toFixed(3);
+  const maxPrice = tickersData?.quotes.USD.ath_price.toFixed();
+  const maxDate = tickersData?.quotes.USD.ath_date;
+  const oneWeekDate = tickersData?.quotes.USD.percent_change_7d;
+
+  const history = useHistory();
 
   return (
     <Container>
@@ -168,36 +188,39 @@ export default function CoinDetail() {
         </title>
       </Helmet>
       <Header>
+        {/* <GoBackBtn onClick={() => history.push('/')}></GoBackBtn> */}
         <Title>
           {state?.name ? state.name : loading ? 'Loading...' : infoData?.name}
         </Title>
+        {/* <DarkModeBtn /> */}
       </Header>
+
       {loading ? (
         <Loader>Loading...</Loader>
       ) : (
         <>
           <Overview>
             <OverviewItem>
-              <span>Rank:</span>
+              <span>Rank</span>
               <span>{infoData?.rank}</span>
             </OverviewItem>
             <OverviewItem>
-              <span>Symbol:</span>
+              <span>Symbol</span>
               <span>${infoData?.symbol}</span>
             </OverviewItem>
             <OverviewItem>
-              <span>Price:</span>
-              <span>${tickersData?.quotes.USD.price.toFixed(3)}</span>
+              <span>Price</span>
+              <span>${tickersData?.quotes.USD.price.toFixed(0)}</span>
             </OverviewItem>
           </Overview>
           <Description>{infoData?.description}</Description>
           <Overview>
             <OverviewItem>
-              <span>Total Suply:</span>
+              <span>Total Suply</span>
               <span>{tickersData?.total_supply}</span>
             </OverviewItem>
             <OverviewItem>
-              <span>Max Supply:</span>
+              <span>Max Supply</span>
               <span>{tickersData?.max_supply}</span>
             </OverviewItem>
           </Overview>
@@ -211,7 +234,12 @@ export default function CoinDetail() {
           </TabContainer>
           <Switch>
             <Route path={`/:coinId/price`}>
-              <Price />
+              <Price
+                price={price}
+                maxPrice={maxPrice}
+                maxDate={maxDate}
+                oneWeekDate={oneWeekDate}
+              />
             </Route>
             <Route path={`/:coinId/chart`}>
               <Chart coinId={coinId} />
