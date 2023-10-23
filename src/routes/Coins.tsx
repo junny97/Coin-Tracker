@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { fetchCoins } from '../api/api';
 import { Helmet } from 'react-helmet';
+import DarkModeBtn from '../components/DarkModeBtn';
 const Container = styled.div`
   padding: 0px 20px;
   max-width: 480px;
@@ -16,20 +16,25 @@ const Header = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 30px;
 `;
 
 const CoinsList = styled.ul``;
 
 const Coin = styled.li`
-  background-color: white;
-  color: ${(props) => props.theme.bgColor};
+  display: flex;
+  align-items: center;
+  background-color: ${(props) => props.theme.bgAccentColor};
+  color: ${(props) => props.theme.textColor};
   border-radius: 15px;
-  padding: 20px;
   margin-bottom: 10px;
+
   a {
     display: flex;
     align-items: center;
     transition: color 0.2s ease-in;
+    padding: 20px;
+    width: 100%;
   }
   &:hover {
     a {
@@ -37,9 +42,14 @@ const Coin = styled.li`
     }
   }
 `;
-
 const Title = styled.h1`
   font-size: 48px;
+  font-weight: 800;
+  padding: 0.2em;
+  margin-right: 0.2em;
+  @media screen and (max-width: 600px) {
+    font-size: 2rem;
+  }
   color: ${(props) => props.theme.accentColor};
 `;
 
@@ -73,16 +83,17 @@ export default function Coins() {
   return (
     <Container>
       <Helmet>
-        <title>코인</title>
+        <title>Crypto Coinst</title>
       </Helmet>
       <Header>
-        <Title>코인</Title>
+        <Title>Crypto Coins</Title>
+        <DarkModeBtn></DarkModeBtn>
       </Header>
       {isLoading ? (
         <Loader>'loading...'</Loader>
       ) : (
         <CoinsList>
-          {data?.slice(0, 100).map((coin) => (
+          {data?.slice(0, 50).map((coin) => (
             <Coin key={coin.id}>
               <Link
                 to={{
