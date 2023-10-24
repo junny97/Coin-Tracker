@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchCoins } from '../api/api';
 import { Helmet } from 'react-helmet';
 import DarkModeBtn from '../components/DarkModeBtn';
+import { ICoin } from '../interface';
 const Container = styled.div`
   padding: 0px 20px;
   max-width: 480px;
@@ -62,21 +63,11 @@ const Loader = styled.span`
 const Img = styled.img`
   width: 35px;
   height: 35px;
-  margin-right: 10px;
+  margin-right: 20px;
 `;
 
-interface CoinInterface {
-  id: string;
-  name: string;
-  symbol: string;
-  rank: number;
-  is_new: boolean;
-  is_active: boolean;
-  type: string;
-}
-
 export default function Coins() {
-  const { isLoading, data } = useQuery<CoinInterface[]>({
+  const { isLoading, data } = useQuery<ICoin[]>({
     queryKey: ['coinList'],
     queryFn: fetchCoins,
   });
