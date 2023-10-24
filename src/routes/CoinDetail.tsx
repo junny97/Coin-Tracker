@@ -2,8 +2,11 @@ import { Helmet } from 'react-helmet';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import goBack from '../assets/goBack.svg';
+import goBack_white from '../assets/goBack_white.svg';
 import Chart from './Chart';
 import Price from './Price';
+import { useRecoilValue } from 'recoil';
+import { isDarkAtom } from '../recoil/atoms';
 import {
   Switch,
   Route,
@@ -22,7 +25,7 @@ interface RouteParams {
 const Container = styled.div`
   padding: 0px 20px;
   max-width: 480px;
-  margin: 0 auto;
+  margin: 20px auto;
 `;
 
 const Header = styled.header`
@@ -30,6 +33,7 @@ const Header = styled.header`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  padding-left: 30px;
 `;
 
 const GoBackBtn = styled.button`
@@ -37,7 +41,19 @@ const GoBackBtn = styled.button`
   appearance: none;
   background: none;
   cursor: pointer;
-  background: url(${goBack}) no-repeat left;
+
+  background: url(${goBack}) no-repeat center;
+  width: 50px;
+  height: 50px;
+  /* background-color: lightgray; */
+`;
+
+const GoBackWhite = styled.button`
+  border: none;
+  appearance: none;
+  background: none;
+  cursor: pointer;
+  background: url(${goBack_white}) no-repeat center;
   width: 50px;
   height: 50px;
 `;
@@ -171,13 +187,7 @@ export default function CoinDetail() {
   const priceMatch = useRouteMatch('/:coinId/price');
   const chartMatch = useRouteMatch('/:coinId/chart');
   const loading = infoLoading || tickersLoading;
-
-  //price에 props로 넘겨줄 정보들
-  const price = tickersData?.quotes.USD.price.toFixed(3);
-  const maxPrice = tickersData?.quotes.USD.ath_price.toFixed();
-  const maxDate = tickersData?.quotes.USD.ath_date;
-  const oneWeekDate = tickersData?.quotes.USD.percent_change_7d;
-
+  const isDark = useRecoilValue(isDarkAtom);
   const history = useHistory();
 
   return (
@@ -188,11 +198,15 @@ export default function CoinDetail() {
         </title>
       </Helmet>
       <Header>
-        {/* <GoBackBtn onClick={() => history.push('/')}></GoBackBtn> */}
+        {isDark ? (
+          <GoBackWhite onClick={() => history.push('/')}></GoBackWhite>
+        ) : (
+          <GoBackBtn onClick={() => history.push('/')}></GoBackBtn>
+        )}
         <Title>
           {state?.name ? state.name : loading ? 'Loading...' : infoData?.name}
         </Title>
-        {/* <DarkModeBtn /> */}
+        <DarkModeBtn />
       </Header>
 
       {loading ? (
@@ -234,12 +248,7 @@ export default function CoinDetail() {
           </TabContainer>
           <Switch>
             <Route path={`/:coinId/price`}>
-              <Price
-                price={price}
-                maxPrice={maxPrice}
-                maxDate={maxDate}
-                oneWeekDate={oneWeekDate}
-              />
+              <Price coinId={coinId} />
             </Route>
             <Route path={`/:coinId/chart`}>
               <Chart coinId={coinId} />
