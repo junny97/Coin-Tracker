@@ -1,27 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
 import { fetchCoinHistory } from '../api/api';
 import ApexChart from 'react-apexcharts';
 import { useRecoilValue } from 'recoil';
 import { isDarkAtom } from '../recoil/atoms';
-interface ChartProps {
-  coinId: string;
-}
+import { IOhlcvData, ICoinId } from '../interface';
 
-interface IHistorical {
-  time_open: string;
-  time_close: string;
-  open: number;
-  high: number;
-  low: number;
-  close: number;
-  volume: number;
-  market_cap?: number;
-}
-
-export default function Chart({ coinId }: ChartProps) {
+export default function Chart({ coinId }: ICoinId) {
   const isDark = useRecoilValue(isDarkAtom);
-  const { isLoading, data } = useQuery<IHistorical[]>({
+  const { isLoading, data } = useQuery<IOhlcvData[]>({
     queryKey: ['ohlcv', coinId],
     queryFn: () => fetchCoinHistory(coinId),
     // refetchInterval: 5000,
@@ -34,48 +20,46 @@ export default function Chart({ coinId }: ChartProps) {
         'Loading chart...'
       ) : (
         <ApexChart
-          type='line'
+          type='candlestick'
           series={[
             {
-              name: 'Price',
-              data: data?.map((price) => price.close) ?? [],
+              data: data?.map((info: IOhlcvData) => {
+                return [
+                  info.time_open,
+                  info.open,
+                  info.high,
+                  info.low,
+                  info.close,
+                ];
+              }) as any, //type 수정하기
             },
           ]}
           options={{
-            theme: {
-              mode: isDark ? 'dark' : 'light',
-            },
+            theme: { mode: isDark ? 'dark' : 'light' },
             chart: {
+              toolbar: { show: false },
+              width: 400,
               height: 300,
-              width: 500,
-              toolbar: {
-                show: false,
-              },
               background: 'transparent',
             },
-            grid: { show: false },
-            stroke: {
-              curve: 'smooth',
-              width: 4,
-            },
-            yaxis: {
-              show: false,
-            },
+            colors: [],
             xaxis: {
-              // axisBorder: { show: false },
-              // axisTicks: { show: false },
-              // labels: { show: false },
               type: 'datetime',
-              categories: data?.map((price) => price.time_close),
+              axisTicks: { show: false },
             },
-            fill: {
-              type: 'gradient',
-              gradient: { gradientToColors: ['#0be881'], stops: [0, 100] },
-            },
-            colors: ['#0fbcf9'],
+            yaxis: { show: false },
             tooltip: {
+              enabled: false,
               y: {
-                formatter: (value) => `$${value.toFixed(2)}`,
+                formatter: (value) => value.toFixed(2),
+              },
+            },
+            plotOptions: {
+              candlestick: {
+                colors: {
+                  upward: '#E50914',
+                  downward: '#6CB0F6',
+                },
               },
             },
           }}
