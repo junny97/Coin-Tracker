@@ -30,7 +30,8 @@ fetcher 함수 생성후 React-Query에서 제공하는 useQuery Hook을 사용�
 클릭 시 해당 암호화폐의 상세페이지로 이동하며 React-Query사용으로 반복적인 비동기 데이터 호출을 방지하여 페이지를 되돌아가도 이미 불러온 API를 re-fetch하지 않습니다.
 
 <div style="text-align: center;">
-    <img src="https://velog.velcdn.com/images/sj_yun/post/26822004-1b64-4edb-80f1-3eec06507ea7/image.png" >
+<img src="https://velog.velcdn.com/images/sj_yun/post/26822004-1b64-4edb-80f1-3eec06507ea7/image.png" style="height: 400px;">
+
 </div>
 
 ### 다크모드/라이트모드 구현
@@ -50,15 +51,14 @@ ThemeProvide 와 Recoil을 사용해 다크모드 상태를 전역에서 관리�
 
 ### Chart
 
-<img src="https://github.com/junny97/CoinTracker/assets/72855681/4b44ae86-f4b0-4fdb-9acd-9ee36211d296" alt="다크모드">
+<img src="https://github.com/junny97/CoinTracker/assets/72855681/4b44ae86-f4b0-4fdb-9acd-9ee36211d296" alt="다크모드" style="height=400">
 
 <br>
 차트 시각화 라이브러리인 ApexChart.js를 사용해 API로부터 가져온 데이터를 캔들차트로 시각화 하였습니다.
 
 ### Price
 
-![스크린샷 2023-10-24 오후 4 33 33](https://github.com/junny97/CoinTracker/assets/72855681/9b8a50e9-3816-4c8f-a351-b6bf7a4dc7cb)
-
+<img src="https://github.com/junny97/CoinTracker/assets/72855681/9b8a50e9-3816-4c8f-a351-b6bf7a4dc7cb" alt="가격" style="height=400">
 일주일간 시장 가격 변동, 24시간 거래량, 24시간 동안의 시가 총액 변화, 역대 최고가, 역대 최고가와 현재 가격에 대한 백분율 차이를 담은 가격표입니다.<br>
 하향가 퍼센트와 상향가 퍼센트 색을 다르게 설정하여 직관적으로 하향/ 상향과의 차이를 볼 수 있게 설정했습니다.
 
