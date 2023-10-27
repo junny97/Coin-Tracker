@@ -11,7 +11,6 @@ export default function Chart({ coinId }: ICoinId) {
     queryKey: ['ohlcv', coinId],
     queryFn: () => fetchCoinHistory(coinId),
     // refetchInterval: 5000,
-    // refetchIntervalInBackground: true,
   });
 
   return (
