@@ -3,7 +3,7 @@ import CoinDetail from './CoinDetail';
 import Coins from './Coins';
 export default function Router() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Switch>
         <Route path='/:coinId'>
           <CoinDetail />
