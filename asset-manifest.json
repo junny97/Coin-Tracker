@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/static/js/main.2ef12a46.js",
-    "index.html": "/index.html",
-    "static/media/goBack.svg": "/static/media/goBack.1634ddb80b6f7dd590c8f460aae19f71.svg",
-    "static/media/goBack_white.svg": "/static/media/goBack_white.7e9e200b8a3dc2ad50ca6d7d180bb6a3.svg",
-    "main.2ef12a46.js.map": "/static/js/main.2ef12a46.js.map"
+    "main.js": "/CoinTracker/static/js/main.e6dedca2.js",
+    "index.html": "/CoinTracker/index.html",
+    "static/media/goBack.svg": "/CoinTracker/static/media/goBack.1634ddb80b6f7dd590c8f460aae19f71.svg",
+    "static/media/goBack_white.svg": "/CoinTracker/static/media/goBack_white.7e9e200b8a3dc2ad50ca6d7d180bb6a3.svg",
+    "main.e6dedca2.js.map": "/CoinTracker/static/js/main.e6dedca2.js.map"
   },
   "entrypoints": [
-    "static/js/main.2ef12a46.js"
+    "static/js/main.e6dedca2.js"
   ]
 }
