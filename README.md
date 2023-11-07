@@ -36,7 +36,7 @@ fetcher 함수 생성후 React-Query에서 제공하는 useQuery Hook을 사용�
 
 ### 다크모드/라이트모드 구현
 
-ThemeProvide 와 Recoil을 사용해 다크모드 상태를 전역에서 관리하여 prop drilling을 방지하였습니다.
+ThemeProvide 와 Recoil을 사용해 다크모드 상태를 전역에서 관리하여 Props Drilling을 방지하였습니다.
 
 <div style="display: flex; justify-content: center;">
   <img src="https://github.com/junny97/CoinTracker/assets/72855681/4b44ae86-f4b0-4fdb-9acd-9ee36211d296" alt="다크모드" width="400" style="margin-right: 10px;">
