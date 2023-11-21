@@ -1,4 +1,4 @@
-export interface ICoin {
+export interface CoinData {
   id: string;
   name: string;
   symbol: string;
@@ -8,11 +8,28 @@ export interface ICoin {
   type: string;
 }
 
-export interface ICoinId {
-  coinId: string;
+export interface InfoData {
+  id: string;
+  name: string;
+  symbol: string;
+  rank: number;
+  is_new: boolean;
+  is_active: boolean;
+  type: string;
+  description: string;
+  message: string;
+  open_source: boolean;
+  started_at: string;
+  development_CoinStatus: string;
+  hardware_wallet: boolean;
+  proof_type: string;
+  org_structure: string;
+  hash_algorithm: string;
+  first_data_at: string;
+  last_data_at: string;
 }
 
-export interface IPrice {
+export interface PriceData {
   id: string;
   name: string;
   symbol: string;
@@ -25,55 +42,34 @@ export interface IPrice {
   last_updated: string;
   quotes: {
     USD: {
+      ath_date: string;
+      ath_price: number;
+      market_cap: number;
+      market_cap_change_24h: number;
+      percent_change_1h: number;
+      percent_change_1y: number;
+      percent_change_6h: number;
+      percent_change_7d: number;
+      percent_change_12h: number;
+      percent_change_15m: number;
+      percent_change_24h: number;
+      percent_change_30d: number;
+      percent_change_30m: number;
+      percent_from_price_ath: number;
       price: number;
       volume_24h: number;
       volume_24h_change_24h: number;
-      market_cap: number;
-      market_cap_change_24h: number;
-      percent_change_15m: number;
-      percent_change_30m: number;
-      percent_change_1h: number;
-      percent_change_6h: number;
-      percent_change_12h: number;
-      percent_change_24h: number;
-      percent_change_7d: number;
-      percent_change_30d: number;
-      percent_change_1y: number;
-      ath_price: number;
-      ath_date: string;
-      percent_from_price_ath: number;
     };
   };
 }
 
-export interface IInfo {
-  id: string;
-  name: string;
-  symbol: string;
-  rank: number;
-  is_new: boolean;
-  is_active: boolean;
-  type: string;
-  description: string;
-  message: string;
-  open_source: boolean;
-  started_at: string;
-  development_status: string;
-  hardware_wallet: boolean;
-  proof_type: string;
-  org_structure: string;
-  hash_algorithm: string;
-  first_data_at: string;
-  last_data_at: string;
-}
-
-export interface IOhlcvData {
-  time_open: string;
-  time_close: string;
-  open: number;
+export interface ChartData {
+  close: number;
   high: number;
   low: number;
-  close: number;
-  volume: number;
   market_cap: number;
+  open: number;
+  time_close: number;
+  time_open: number;
+  volume: number;
 }
