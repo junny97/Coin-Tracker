@@ -1,15 +1,25 @@
 import { DefaultTheme } from 'styled-components';
-//DefaultTheme로 정의한 interface 타입들을 theme.ts에서 사용
+
 export const darkTheme: DefaultTheme = {
-  bgColor: '#1E1E1E',
-  textColor: '#f5f6fa',
-  bgAccentColor: '#2f3640',
-  accentColor: '#487eb0',
+  bgColor: '#17171a',
+  textColor: '#f7f7f7',
+  subTextColor: '#f7f7f780',
+  themeColor: '#035FE8',
+  accentColor: '#17e6a1',
+  btnBgColor: '#292f40',
+  coinBgColor: '#1f2433',
+  cardTextColor: '#04091a',
+  cardBgColor: '#ebfbee',
 };
 
 export const lightTheme: DefaultTheme = {
-  bgColor: 'white',
-  textColor: '2f3640',
-  bgAccentColor: 'whiteSmoke',
-  accentColor: '#487eb0',
+  bgColor: '#DDE9F5',
+  textColor: '#04091a',
+  subTextColor: '#04091a80',
+  themeColor: '#035FE8',
+  accentColor: '#2354e6',
+  btnBgColor: '#f1f3f5',
+  coinBgColor: '#ffffff',
+  cardTextColor: '#04091a',
+  cardBgColor: '#dbe4ff',
 };
