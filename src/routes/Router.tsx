@@ -1,17 +1,13 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import CoinDetail from './CoinDetail';
-import Coins from './Coins';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import CoinDetail from '../pages/CoinDetail';
+import Coins from '../pages/Coins';
 export default function Router() {
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
-      <Switch>
-        <Route path='/:coinId'>
-          <CoinDetail />
-        </Route>
-        <Route path='/'>
-          <Coins />
-        </Route>
-      </Switch>
+      <Routes>
+        <Route path='/' element={<Coins />}></Route>
+        <Route path=':coinId/*' element={<CoinDetail />}></Route>
+      </Routes>
     </BrowserRouter>
   );
 }
