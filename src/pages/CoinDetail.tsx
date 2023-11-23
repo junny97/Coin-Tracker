@@ -59,16 +59,20 @@ export default function CoinDetail() {
             <Title>{priceData.symbol}</Title>
             <DarkModeBtn width={34} fontSize={18} />
           </Header>
-          <Info>
-            <Img src={getImg(priceData.symbol)} />
-            <Name>{priceData.name}</Name>
-          </Info>
-          <CurrentPrice>${priceData?.quotes.USD.price.toFixed(3)}</CurrentPrice>
-          <PriceChange value={priceData?.quotes.USD.percent_change_24h!}>
-            {priceData?.quotes.USD.percent_change_24h}%
-          </PriceChange>
-
+          <InfoBox>
+            <Info>
+              <Img src={getImg(priceData.symbol)} />
+              <Name>{priceData.name}</Name>
+            </Info>
+            <CurrentPrice>
+              ${priceData?.quotes.USD.price.toFixed(3)}
+            </CurrentPrice>
+            <PriceChange value={priceData?.quotes.USD.percent_change_24h!}>
+              {priceData?.quotes.USD.percent_change_24h}%
+            </PriceChange>
+          </InfoBox>
           <Rank>Rank # {priceData.rank}</Rank>
+
           <StatusContainer>
             <Status border>
               <StatusTitle data-tip='Current Price x Circulating Supply'>
@@ -121,6 +125,13 @@ const Title = styled.div`
   flex: 1;
   margin-left: 10px;
   font-size: 24px;
+`;
+
+const InfoBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Info = styled.div`
