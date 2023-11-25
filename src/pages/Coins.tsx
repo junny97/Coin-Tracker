@@ -20,14 +20,14 @@ function Coins() {
   });
 
   return (
-    <Layout title='Coin T0P 100'>
+    <Layout title='CoinTracker'>
       {isLoading ? (
         <Loading />
       ) : (
         <>
           <Header>
             <Logo src={CoinLogo} alt='코인' />
-            <Title>Coin T0P 100</Title>
+            <Title>Coin Tracker</Title>
             <DarkModeBtn width={40} fontSize={20} />
           </Header>
           <CardSlide />
