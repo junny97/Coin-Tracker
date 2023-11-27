@@ -31,19 +31,20 @@
 
 ### [메인 페이지]
 
+<div style="text-align:center;">
 <img src="ReadMeImg/main.gif" alt="메인페이지"/>
-
+</div>
 ### React Query 사용
 
 - 메인 페이지에서 가장 많이 거래되는 코인목록 Top100을 받아옵니다.
 - `React-Query`에서 제공하는 **useQuery Hook** 을 사용해 API 요청시 코인 데이터를 받아옵니다.<br>
-  useQuery Hook을 이용하여 데이터를 요청하면 결과가 자동으로 **캐싱**되어, 동일한 쿼리가 여러 번 호출될 때 네트워크 요청을 반복하지 않고 <br>첫 번째 호출에서 받은 데이터를 재사용함으로써 성능을 향상시킬 수 있습니다.
+  useQuery Hook을 이용하여 데이터를 요청하면 결과가 자동으로 **캐싱**되어, 동일한 쿼리가 여러 번 호출될 때 네트워크 요청을 반복하지 않고 첫 번째 호출에서 받은 데이터를 재사용함으로써 성능을 향상시킬 수 있습니다.
 
 ### 다크모드
 
 - styled-components, recoil를 이용하여 다크모드를 구현하였으며, 부드럽게 전환되도록 transition을 적용하였습니다.
 - `recoil`을 통해 다크모드 상태값(isDark atom)을 전역 관리하여 불필요한 **Prop Drilling**을 방지하고
-  <br>styled-components에서 제공하는 `ThemeProvider`를 사용하여 다크모드 상태값에 따라 theme 적용하였습니다.
+  <br>styled-components에서 제공하는 `ThemeProvider`를 사용하여 다크모드 상태값에 따라 theme를 적용하였습니다.
 
 ### 기타 기능
 
@@ -59,15 +60,17 @@
 
 ### Chart
 
+<div style="text-align:center;">
 <img src="ReadMeImg/chart.gif" alt="메인페이지"/>
-
+</div>
 - 차트 시각화 라이브러리인 `ApexChart.js`를 사용해 API로부터 가져온 최근 2주간의 가격 흐름을 **Candlestick**로 나타냈습니다.
 - Candlestick 정보가 없는 코인들도 존재하여 그럴경우에는 에러 문구를 나태내도록 설정했습니다.
 
 ### Price
 
+<div style="text-align:center;">
 <img src="ReadMeImg/price.gif" alt="메인페이지"/>
-
+</div>
 - 24시간 거래량, 24시간 동안의 시가 총액 변화, 역대 최고가, 역대 최고가와 현재 가격에 대한 백분율 차이를 담은 가격표입니다.<br>
 - 하향가 퍼센트와 상향가 퍼센트 색을 다르게 설정하여 직관적으로 하향/ 상향과의 차이를 볼 수 있게 설정했습니다.
 - `react-tooltip`을 사용하여, 마우스 hover시 구체적인 용어 설명을 추가로 나타냈습니다.
