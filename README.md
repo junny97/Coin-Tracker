@@ -34,6 +34,7 @@
 <div style="text-align:center;">
 <img src="ReadMeImg/main.gif" alt="메인페이지"/>
 </div>
+
 ### React Query 사용
 
 - 메인 페이지에서 가장 많이 거래되는 코인목록 Top100을 받아옵니다.
