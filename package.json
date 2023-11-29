@@ -58,8 +58,7 @@
     "@tanstack/react-query-devtools": "^5.0.1",
     "@types/react-helmet": "^6.1.8",
     "@types/react-router-dom": "^5.3.3",
-    "@types/styled-components": "^5.1.28",
-    "@babel/plugin-proposal-private-property-in-object"
+    "@types/styled-components": "^5.1.28"
   },
   "homepage": "https://junny97.github.io/CoinTracker"
 }
