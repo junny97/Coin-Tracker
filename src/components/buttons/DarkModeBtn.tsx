@@ -2,7 +2,6 @@ import React from 'react';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { useRecoilState } from 'recoil';
 import { isDarkAtom } from '../../recoil/atoms';
-import styled from 'styled-components';
 import Button from './Button';
 
 interface DarkModeBtnProps {
