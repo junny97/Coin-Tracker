@@ -21,7 +21,7 @@
 | recoil           | 전역 상태관리       |
 | react-tooltip    | 추가설명            |
 | react-rotuer-dom | 라우팅 구현         |
-| react-query      | Data Fetching 관리  |
+| react-query      | 서버 상태 관리  |
 | react-Helmet     | title 메타테그 설정 |
 | apexcharts       | 차트 시각화         |
 
